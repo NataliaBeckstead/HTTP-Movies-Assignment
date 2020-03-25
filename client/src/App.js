@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
+import UpdateMovie from "./Movies/UpdateMovie";
 import axios from 'axios';
 
 const App = () => {
@@ -20,6 +21,10 @@ const App = () => {
     setSavedList([...savedList, movie]);
   };
 
+  const removeMovie = id => {
+		setMovieList(movieList.filter(movie => movie.id !== id));
+	};
+
   useEffect(() => {
     getMovieList();
   }, []);
@@ -33,8 +38,13 @@ const App = () => {
       </Route>
 
       <Route path="/movies/:id">
-        <Movie addToSavedList={addToSavedList} />
+        <Movie addToSavedList={addToSavedList} removeMovie={removeMovie} />
       </Route>
+
+      <Route path="/update-movie/:id">
+				<UpdateMovie movies={movieList} setMovieList={setMovieList} />
+			</Route>
+
     </>
   );
 };
