@@ -35,7 +35,7 @@ const App = () => {
       <SavedList list={savedList} />
 
       <Route exact path="/">
-        <Link to="/add-movie">Add Movie</Link>
+        <Link to="/add-movie" className="add-movie">Add Movie</Link>
         <MovieList movies={movieList} />
       </Route>
 
